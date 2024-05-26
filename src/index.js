@@ -14,14 +14,14 @@ function logRoutes(request, response, next){
     console.log(route)
     return next()
 }
-app.use(logRoutes)
+//app.use(logRoutes)
 
 app.get('/projects', function(request, response){
     return response.json(projects)
 });
 
 // Método POST para criar um novo projeto
-app.post('/projects', function(request, response){
+app.post('/projects', logRoutes, function(request, response){
        const {name, owner} = request.body //parametros de rota poderia ser no put
  const project = {
     id: uuidv4(),
